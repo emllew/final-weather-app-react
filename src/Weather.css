@@ -1,0 +1,28 @@
+.Weather {
+  color: #205d67;
+  border: 1px solid;
+  padding: 19px;
+  margin: 30px;
+border-radius: 4px;
+}
+
+.Weather h1 {
+  font-size: 30px;
+  font-weight: 450px;
+  line-height: 30px;
+}
+
+.Weather form {
+  margin-bottom:20px;
+}
+
+.Weather ul {
+  margin: 0;
+  padding:0;
+}
+.Weather li {
+  font-size: 20px;
+  font-weight: 100;
+
+list-style:none;
+}
