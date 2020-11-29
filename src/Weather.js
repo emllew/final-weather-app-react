@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import "./Weather.css";
+import DateAndTime from "./DateAndTime";
 
-export default function Weather() {
+export default function Weather(props) {
   const [city, setCity] = useState("");
   const [ready, setReady] = useState(false);
   const [weatherData, setWeatherData] = useState({});
@@ -15,7 +16,9 @@ export default function Weather() {
       wind: Math.round(response.data.wind.speed),
       description: response.data.weather[0].description,
       humidity: Math.round(response.data.main.humidity),
-      icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+    icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+    city: response.data.name,
+    date: new Date(response.data.dt * 1000),
     });
   }
 
@@ -41,7 +44,13 @@ export default function Weather() {
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
         axios.get(url).then(displayWeather);
       }
+    
   }
+
+  function search() {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=33b9889a2520a43a8c73d715b7b85a96&units=metric`;
+    axios.get(apiUrl).then(displayWeather);
+}
 
   let form = (
     <div className="topButtons">
@@ -62,9 +71,9 @@ export default function Weather() {
     return (
       <div className="Weather">
         {form}
-        <h1>{city}</h1>
-
-        <div className="row">
+        <h1>{weatherData.city}</h1>
+        <DateAndTime />
+        <div className="list">
           <ul>
             <li>Temperature: {Math.round(weatherData.temperature)}•C</li>
             <li className="text-capitalize">Description: {weatherData.description}</li>
@@ -78,7 +87,7 @@ export default function Weather() {
       </div>
     );
   } else {
-
+    search();
     return (
       <div className="notSearchedForm">
         <div className="form">{form}</div>
