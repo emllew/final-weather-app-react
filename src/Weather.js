@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import "./Weather.css";
-import DateAndTime from "./DateAndTime";
+import Search from "./Search";
 
 export default function Weather(props) {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(props.defaultCity);
   const [ready, setReady] = useState(false);
   const [weatherData, setWeatherData] = useState({});
   
@@ -35,16 +35,15 @@ export default function Weather(props) {
 
   function AutoCities() {
     navigator.geolocation.getCurrentPosition(currentLocation);
-      function currentLocation(position) {
-        console.log(position.coords.latitude);
-        console.log(position.coords.longitude);
-        let lat = position.coords.latitude;
-        let lon = position.coords.longitude;
-        let apiKey = "33b9889a2520a43a8c73d715b7b85a96";
-        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-        axios.get(url).then(displayWeather);
-      }
-    
+    function currentLocation(position) {
+      console.log(position.coords.latitude);
+      console.log(position.coords.longitude);
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      let apiKey = "33b9889a2520a43a8c73d715b7b85a96";
+      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+      axios.get(url).then(displayWeather);
+    }
   }
 
   function search() {
@@ -71,19 +70,10 @@ export default function Weather(props) {
     return (
       <div className="Weather">
         {form}
+
         <h1>{weatherData.city}</h1>
-        <DateAndTime />
-        <div className="list">
-          <ul>
-            <li>Temperature: {Math.round(weatherData.temperature)}•C</li>
-            <li className="text-capitalize">Description: {weatherData.description}</li>
-            <li>Humidity: {weatherData.humidity}%</li>
-            <li>Wind: {weatherData.wind}km/h</li>
-            <li>
-              <img className="icon" src={weatherData.icon} alt="weather icon" />
-            </li>
-          </ul>
-        </div>
+        <Search data={weatherData}/>
+
       </div>
     );
   } else {
