@@ -1,4 +1,5 @@
 import React from "react";
+import "./DateAndTime.css";
 
 export default function DateAndTime(props) {
   let now = new Date();
@@ -25,7 +26,7 @@ export default function DateAndTime(props) {
 
   function showDateTime() {
     return (
-      <div>
+      <div className="dateTime">
         It is currently {hours}:{minutes} on {day}{" "}
       </div>
     );

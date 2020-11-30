@@ -12,7 +12,7 @@ export default function Forecast(props) {
     setLoaded(true);
   }
 
-  if (loaded) {
+  if (loaded && props.city === forecast.city.name) {
     return (
       <div className="row">
         <ForecastDays data={forecast.list[0]} />

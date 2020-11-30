@@ -6,25 +6,27 @@ import "./Search.css";
 
 export default function Search(props) {
   return (
-    <div className="search">
-      <DateAndTime />
+    <div className="searchResults">
       <h1>{props.data.city}</h1>
+      <div className="row">
       <div className="list">
         <ul>
+          <li><em><DateAndTime /></em></li>
           <li><Temperature celsius={Math.round(props.data.temperature)} /></li>
-          <li className="text-capitalize">
-            Description: {props.data.description}
-          </li>
           <li>Humidity: {props.data.humidity}%</li>
           <li>Wind: {props.data.wind}km/h</li>
-          <li>
-              <WeatherIcon
-                code={props.data.icon}
-                alt={props.data.description}
-              />
-            </li>
         </ul>
-      </div>
-    </div>
+        </div>
+        <WeatherIcon
+          code={props.data.icon}
+          alt={props.data.description}
+          size={90}
+          color={props.data.color}
+        />
+        </div>
+          <h1>
+          {props.data.description}
+      </h1>
+        </div>
   );
 }

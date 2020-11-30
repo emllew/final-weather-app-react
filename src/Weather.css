@@ -1,20 +1,24 @@
 .Weather {
-  color: #ffffff;
-  border: 1px solid;
-  padding: 19px;
-  margin: 30px;
-border-radius: 4px;
-background-color:#FFCACA;
+  color:#f7d1ba;
+  padding: 15px;
 }
 
-.Weather h1 {
-  font-size: 30px;
-  font-weight: 450px;
-  line-height: 30px;
+.Weather .row {
+justify-content: space-evenly;
+flex-wrap:nowrap;
+padding: 10px;
+margin: 10px;
+font-family: 'IM Fell Great Primer', serif;
 }
 
-.Weather form {
-  margin-bottom:20px;
+.topButtons {
+  text-align:center;
+}
+
+.btn {
+  color:#d49a89;
+  font-family: 'IM Fell Great Primer', serif;
+  font-size:20px;
 }
 
 .Weather ul {
@@ -22,7 +26,7 @@ background-color:#FFCACA;
   padding:0;
 }
 .Weather li {
-  font-size: 20px;
-  font-weight: 100;
+  font-size: 17px;
 list-style:none;
+font-family: 'IM Fell Great Primer', serif;
 }

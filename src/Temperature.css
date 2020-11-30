@@ -1,0 +1,9 @@
+a {
+  color:#f4f4f4;
+}
+
+a:hover {
+  color:black;
+  text-decoration:none;
+  transition: 0.5s ease-in-out;
+}

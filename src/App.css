@@ -1,5 +1,5 @@
 .App {
-  max-width: 700px;
+  max-width: 600px;
   margin: 30px auto;
 }
 
@@ -8,6 +8,11 @@
   margin: 10px 0;
 }
 
-div.container {
-padding:30px;
+.app a {
+  color:#557571;
+}
+
+div .morning {
+  background-color: #557571;
+border-radius: 3px;
 }

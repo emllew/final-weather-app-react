@@ -1,0 +1,23 @@
+.iconDescription {
+text-align:right;
+justify-content: space-around;
+}
+
+.searchResults h1 {
+  font-weight:bold;
+  font-size:40px;
+  text-transform: capitalize;
+  padding: 20px;
+font-family:'Bungee Shade', cursive;
+text-align: center;
+}
+
+.searchResults h1:hover {
+  cursor:default;
+  color:#d49a89;
+transition: 0.5s ease-in-out;
+}
+
+.searchResults li:hover{
+  cursor:default;
+}

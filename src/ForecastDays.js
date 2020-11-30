@@ -9,16 +9,16 @@ export default function ForecastDays(props) {
   }
 
   function temperature() {
-    let temperature = Math.round(props.data.main.temp);
-    return `${temperature}•C`;
+    let temperature = Math.round(props.data.main.temp)
+    return `${temperature}•C`
   }
 
   return (
     <div className="upcomingForecast">
       <div className="col">
         {hours()}
-        <WeatherIcon code={props.data.weather[0].icon} />
-        {temperature()};
+        <WeatherIcon code={props.data.weather[0].icon} size={43}/>
+        {temperature()}
       </div>
     </div>
   );
