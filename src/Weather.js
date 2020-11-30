@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
+import Forecast from "./Forecast";
 import "./Weather.css";
 import Search from "./Search";
 
@@ -8,25 +9,23 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [ready, setReady] = useState(false);
   const [weatherData, setWeatherData] = useState({});
-  
+
   function displayWeather(response) {
     setReady(true);
-  setWeatherData({
+    setWeatherData({
       temperature: Math.round(response.data.main.temp),
       wind: Math.round(response.data.wind.speed),
       description: response.data.weather[0].description,
       humidity: Math.round(response.data.main.humidity),
-    icon: response.data.weather[0].icon,
-    city: response.data.name,
-    date: new Date(response.data.dt * 1000),
+      icon: response.data.weather[0].icon,
+      city: response.data.name,
+      date: new Date(response.data.dt * 1000),
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(event.target.value);
-    let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=33b9889a2520a43a8c73d715b7b85a96&units=metric`;
-    axios.get(apiURL).then(displayWeather);
+    search();
   }
 
   function updateCityInfo(event) {
@@ -47,12 +46,12 @@ export default function Weather(props) {
   }
 
   function search() {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=33b9889a2520a43a8c73d715b7b85a96&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=33b9889a2520a43a8c73d715b7b85a96&units=metric`;
     axios.get(apiUrl).then(displayWeather);
-}
+  }
 
   let form = (
-    <div className="topButtons">
+    <div>
       <form onSubmit={handleSubmit}>
         <input
           type="search"
@@ -60,9 +59,13 @@ export default function Weather(props) {
           onChange={updateCityInfo}
           className="searchBar"
         />
-        <button className="button" type="submit">Search</button>
+        <button className="button" type="submit">
+          Search
+        </button>
       </form>
-      <button className="button" onClick={AutoCities}>Get Current Location</button>
+      <button className="button" onClick={AutoCities}>
+        Get Current Location
+      </button>
     </div>
   );
 
@@ -70,10 +73,8 @@ export default function Weather(props) {
     return (
       <div className="Weather">
         {form}
-
-        <h1>{weatherData.city}</h1>
-        <Search data={weatherData}/>
-
+        <Search data={weatherData} />
+        <Forecast city={weatherData.city}/>
       </div>
     );
   } else {

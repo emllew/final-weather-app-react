@@ -8,6 +8,7 @@ export default function Search(props) {
   return (
     <div className="search">
       <DateAndTime />
+      <h1>{props.data.city}</h1>
       <div className="list">
         <ul>
           <li><Temperature celsius={Math.round(props.data.temperature)} /></li>
