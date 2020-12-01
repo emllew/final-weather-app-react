@@ -14,7 +14,7 @@ function App() {
                 {" "}
                 open-source project{" "}
               </a>
-              was coded by Emily
+              was coded by Emily Llewelyn
             </footer>
         </div>
       </div>
